@@ -98,8 +98,6 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-vim.opt.tabstop = 4
-
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -295,6 +293,28 @@ require('lazy').setup({
       require('which-key').register({
         ['<leader>h'] = { 'Git [H]unk' },
       }, { mode = 'v' })
+    end,
+  },
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      require('neo-tree').setup {
+        -- Add your custom configuration here
+        filesystem = {
+          follow_current_file = true,
+          use_libuv_file_watcher = true,
+        },
+        buffers = {
+          follow_current_file = true,
+        },
+      }
     end,
   },
 
@@ -508,6 +528,8 @@ require('lazy').setup({
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          -- My neotree 
+          vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { buffer = event.buf, desc = 'Toggle [E]xplorer' })
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
