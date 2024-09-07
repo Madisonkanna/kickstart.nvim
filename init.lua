@@ -529,7 +529,7 @@ require('lazy').setup({
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           -- My neotree 
-          vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { buffer = event.buf, desc = 'Toggle [E]xplorer' })
+          vim.keymap.set('n', '<leader>f', ':Neotree toggle<CR>', { buffer = event.buf, desc = 'Toggle [E]xplorer' })
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
